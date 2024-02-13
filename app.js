@@ -32,6 +32,8 @@ function sortear() {
     // Atribui a variável resultado todo o texto  do HTML que vamos alterar pra exibir os números sorteados.
     resultado.innerHTML = `<label class="texto__paragrafo">Números sorteados: ${numerosSorteados}.</label>`;
     // Altera o HTML da página para exibir os números sorteados.
+
+    alterarStatusDoBotao();
 };
 
 function gerarNumeroAleatorio (min,max) {
@@ -40,3 +42,24 @@ function gerarNumeroAleatorio (min,max) {
     // Número máximo menos número mínimo +1 para pegar a quantidade certa do intervalo de números.
     // + min para não pegar números menores que o valor mínimo.
 };
+
+function alterarStatusDoBotao() {
+    let botao = document.getElementById('btn-reiniciar');
+    if (botao.classList.contains('container__botao-desabilitado')) {
+        botao.classList.remove('container__botao-desabilitado');
+        botao.classList.add('container__botao');
+    } else {
+        botao.classList.remove('container__botao');
+        botao.classList.add('container__botao-desabilitado');
+    }
+}
+
+function reiniciar() {
+    document.getElementById('quantidade').value = "";
+    document.getElementById('de').value = "";
+    document.getElementById('ate').value = "";
+
+    document.getElementById('resultado').innerHTML = '<label class="texto__paragrafo">Números sorteados:  nenhum até agora</label>';
+
+    alterarStatusDoBotao();
+}
