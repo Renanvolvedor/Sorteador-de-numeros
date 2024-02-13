@@ -10,20 +10,28 @@ function sortear() {
     // lista vazia que vai receber os números sorteados.
     let numero;
     // variável que vai receber um número sorteado por vez para ser adicionado na lista.
+    
     for(let i = 0; i < quantidade; i++) {
         // Para cada número sorteado, o i vai aumentar em 1 até chegar na quantidade de 
         // números desejados e sair do loop. Se a variável quantidade for 3, o i vai começar em 0,
         // depois 1, depois 2 e sair do loop pois ao chegar em 3 o i será IGUAL a variável quantidade,
         // gerando assim 3 números aleatórios: quando i=0, i=1 e i=2.
         numero = gerarNumeroAleatorio(de,ate);
-        // Gera o número aleatório e atribui a variável numero.
+        // Gera o número aleatório e atribui a variável número.
+        while(numerosSorteados.includes(numero)){
+            // Enquanto o número gerado aleatoriamente estiver incluso na lista de números sorteados...
+            gerarNumeroAleatorio(de,ate);
+            // ...será gerado outro número aleatório, evitando assim, repetições.
+        }
         numerosSorteados.push(numero);
         // Coloca o número aleatório, atribuído na variável número, na lista criada para guardar os
         // números sorteados.
     }
     
-    alert(numerosSorteados);
-
+    let resultado = document.getElementById('resultado');
+    // Atribui a variável resultado todo o texto  do HTML que vamos alterar pra exibir os números sorteados.
+    resultado.innerHTML = `<label class="texto__paragrafo">Números sorteados: ${numerosSorteados}.</label>`;
+    // Altera o HTML da página para exibir os números sorteados.
 };
 
 function gerarNumeroAleatorio (min,max) {
